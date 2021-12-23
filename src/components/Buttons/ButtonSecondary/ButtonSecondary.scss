@@ -1,0 +1,12 @@
+@import "../../../style/mixins.scss";
+
+.btn {
+	&__secondary {
+		@include button("secondary");
+	}
+ &__icon {
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+ }
+}
