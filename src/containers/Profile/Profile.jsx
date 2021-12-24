@@ -6,10 +6,10 @@ import "./Profile.scss";
 export default function Profile() {
 	return (
 		<div className="profile">
-			<header>
-				<h1>Welcome back</h1>
-				<h1>User name!</h1>
-				<button>Edit name</button>
+			<header className="profile__header">
+				<h1 className="profile__header__title">Welcome back</h1>
+				<h1 className="profile__header__username">User name!</h1>
+				<button className="profile__header__btn--edit">Edit name</button>
 			</header>
 			<section className="profile__section">
 				{transactionsData.map((transaction) => {
