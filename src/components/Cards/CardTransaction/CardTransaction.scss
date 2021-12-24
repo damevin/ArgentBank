@@ -1,0 +1,26 @@
+@import "../../../style//mixins.scss";
+
+.account {
+	background-color: #fff;
+	border: 1px solid black;
+	box-sizing: border-box;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 1.5rem;
+	text-align: left;
+	&__title {
+		margin: 0;
+		padding: 0;
+		font-size: 1rem;
+		font-weight: normal;
+	}
+	&__amount {
+		margin: 0;
+		font-size: 2.5rem;
+		font-weight: bold;
+	}
+	&__btn {
+		margin-top: 15px;
+		@include button(primary--outlined);
+	}
+}
