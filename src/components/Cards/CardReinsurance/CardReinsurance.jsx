@@ -3,10 +3,10 @@ import "./CardReinsurance.scss";
 
 export default function CardReinsurance({ reinssurance }) {
 	return (
-		<div class="feature-item">
-			<img src={reinssurance.icon} alt={reinssurance.iconDescription} class="feature-icon" />
-			<h3 class="feature-item-title">{reinssurance.title}</h3>
-			<p>{reinssurance.description}</p>
+		<div className="feature">
+			<img src={reinssurance.icon} alt={reinssurance.iconDescription} className="feature__icon" />
+			<h3 className="feature__title">{reinssurance.title}</h3>
+			<p className="feature__description">{reinssurance.description}</p>
 		</div>
 	);
 }
