@@ -1,9 +1,20 @@
 @mixin button($type) {
+	border: none;
 	cursor: pointer;
+	@if $type == primary {
+		background-color: #00bc77;
+		border-color: #00bc77;
+		color: #fff;
+		display: block;
+		font-size: 1.1rem;
+		font-weight: bold;
+		padding: 8px;
+		width: 100%;
+		text-decoration: underline;
+	}
 	@if $type == secondary {
 		align-items: center;
 		background: transparent;
-		border: none;
 		display: flex;
 		font-size: 1rem;
 		font-weight: bold;
