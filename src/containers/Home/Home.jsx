@@ -7,9 +7,11 @@ export default function Home() {
 	return (
 		<div>
 			<Header />
-			{reinssuranceData.map((card) => {
-				return <CardReinsurance reinssurance={card} />;
-			})}
+			<section>
+				{reinssuranceData.map((card) => {
+					return <CardReinsurance reinssurance={card} />;
+				})}
+			</section>
 		</div>
 	);
 }
