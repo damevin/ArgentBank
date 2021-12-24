@@ -1,0 +1,9 @@
+.profile {
+	background: rgb(18, 0, 43);
+	&__section {
+		margin: 0 2rem;
+		display: grid;
+		gap: 15px;
+		padding-bottom: 15px;
+	}
+}

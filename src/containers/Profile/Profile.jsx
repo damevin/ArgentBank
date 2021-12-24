@@ -1,4 +1,7 @@
 import React from "react";
+import CardTransaction from "../../components/Cards/CardTransaction/CardTransaction";
+import transactionsData from "../../data/transactions";
+import "./Profile.scss";
 
 export default function Profile() {
 	return (
@@ -8,9 +11,11 @@ export default function Profile() {
 				<h1>User name!</h1>
 				<button>Edit name</button>
 			</header>
-   <section>
-    
-   </section>
+			<section className="profile__section">
+				{transactionsData.map((transaction) => {
+					return <CardTransaction transaction={transaction} />;
+				})}
+			</section>
 		</div>
 	);
 }
