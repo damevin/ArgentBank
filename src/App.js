@@ -6,30 +6,32 @@ import { connect } from "react-redux";
 import { fetchUser } from "./redux/middlewares/user";
 import { useEffect } from "react";
 
-function App({ token, fetchUser }) {
+function App({ token, fetchUser, user, setUserData }) {
 	useEffect(() => {
-		if (localStorage.getItem("token")) {
+		const localStorageToken = localStorage.getItem("token");
+		if (localStorageToken || token) {
 			const query = {
 				method: "POST",
 				endPoint: "profile",
-				token: localStorage.getItem("token"),
+				token: localStorageToken || token,
 			};
 			fetchUser(query);
 		}
 	}, [token, fetchUser]);
 
 	return (
-			<div className="App">
-				<Navbar />
-				<Router />
-				<Footer />
-			</div>
+		<div className="App">
+			<Navbar />
+			<Router />
+			<Footer />
+		</div>
 	);
 }
 
-const mapStateToProps = ({ token }) => {
+const mapStateToProps = ({ token, user}) => {
 	return {
 		token,
+		user
 	};
 };
 
