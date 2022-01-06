@@ -10,7 +10,7 @@ export default function Home() {
 			<Header />
 			<section className="home__section">
 				{reinssuranceData.map((card) => {
-					return <CardReinsurance reinssurance={card} />;
+					return <CardReinsurance reinssurance={card} key={card._id} />;
 				})}
 			</section>
 		</div>
