@@ -13,7 +13,7 @@ export default function Profile() {
 			</header>
 			<section className="profile__section">
 				{transactionsData.map((transaction) => {
-					return <CardTransaction transaction={transaction} />;
+					return <CardTransaction transaction={transaction} key={transaction._id} />;
 				})}
 			</section>
 		</div>
