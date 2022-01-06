@@ -1,85 +1,64 @@
 import "./FormLogin.scss";
+import { connect } from "react-redux";
 import { Navigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { setEmail, setToken, setFirstname, setLastname } from "../../../redux/reducers";
+import { fetchToken } from "../../../redux/middlewares/token";
+import { useRef } from "react";
+
 import React from "react";
 
-export default function FormLogin() {
-	const token = useSelector((state) => state.user.token);
-	const dispatch = useDispatch();
-
-	const [userInputs, setUserInputs] = useState({
-		email: "",
-		password: "",
-	});
-	const [formIsSubmited, setFormIsSubmited] = useState(false);
-	const [submitError, setSubmitError] = useState(false);
-
-	const inputChange = (event) => {
-		const inputType = event.target.id;
-		setUserInputs({
-			...userInputs,
-			[inputType]: event.target.value,
-		});
-		setSubmitError(false);
-	};
+const Login = ({ token, fetchToken, error, userError, remember }) => {
+	const inputEmail = useRef();
+	const inputPassword = useRef();
+	const inputRemember = useRef();
 
 	const loginFormSubmit = (event) => {
 		event.preventDefault();
-		setFormIsSubmited(true);
+		const query = {
+			method: "POST",
+			endPoint: "login",
+			body: {
+				email: inputEmail.current.value,
+				password: inputPassword.current.value,
+			},
+			remember: inputRemember.current.checked,
+		};
+		fetchToken(query);
 	};
-
-	useEffect(() => {
-		if (formIsSubmited) {
-			const api = process.env.REACT_APP_API_URL;
-			const url = `${api}/user/login`;
-			const loginPayload = {
-				email: userInputs.email,
-				password: userInputs.password,
-			};
-
-			fetch(url, {
-				method: "POST",
-				body: JSON.stringify(loginPayload),
-				headers: { "Content-type": "application/json" },
-			})
-				.then((response) => response.json())
-				.then((json) => {
-					dispatch(setEmail(userInputs.email));
-					dispatch(setToken(json.body.token));
-
-				})
-				.catch((error) => {
-					setSubmitError(true);
-
-					setUserInputs({
-						...userInputs,
-					});
-				});
-			setFormIsSubmited(false);
+	if (token) {
+		if (remember) {
+			localStorage.setItem("token", token);
 		}
-	}, [dispatch, userInputs, formIsSubmited]);
-
-	if (token) return <Navigate to="/profile" />;
-
+		return <Navigate to="/profile" />;
+	}
 	return (
 		<form className="formLogin" onSubmit={loginFormSubmit}>
 			<div className="formLogin__wrapper">
-				<label className="formLogin__label" htmlFor="">
+				<label className="formLogin__label" htmlFor="email">
 					E-mail
 				</label>
-				<input className="formLogin__input" id="email" onChange={inputChange} type="text" />
+				<input
+					className="formLogin__input"
+					id="email"
+					value="tony@stark.com"
+					ref={inputEmail}
+					type="text"
+				/>
 			</div>
 			<div className="formLogin__wrapper">
-				<label className="formLogin__label" htmlFor="">
+				<label className="formLogin__label" htmlFor="password">
 					Password
 				</label>
-				<input className="formLogin__input" id="password" onChange={inputChange} type="password" />
+				<input
+					className="formLogin__input"
+					id="password"
+					value="password123"
+					ref={inputPassword}
+					type="password"
+				/>
 			</div>
 			<div className="formLogin__wrapper--secondary">
-				<input className="formLogin__input--secondary" id="save" type="checkbox" />
-				<label className="formLogin__label--secondary" htmlFor="">
+				<input className="formLogin__input--secondary" id="save" type="checkbox" ref={inputRemember} />
+				<label className="formLogin__label--secondary" htmlFor="save">
 					Remember me
 				</label>
 			</div>
@@ -88,4 +67,22 @@ export default function FormLogin() {
 			</button>
 		</form>
 	);
-}
+};
+
+const mapStateToProps = ({ token, error, loading, userError, remember }) => {
+	return {
+		token,
+		error,
+		loading,
+		remember,
+		userError,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchToken: (...args) => dispatch(fetchToken(...args)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
