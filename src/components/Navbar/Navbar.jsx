@@ -9,9 +9,9 @@ export default function Navbar() {
 	const token = useSelector((state) => state.user.token);
 	const dispatch = useDispatch();
 
+
 	return (
 		<nav className="navbar">
-			{token}
 			<img src={Logo} alt="" className="navbar__logo"></img>
 			<ButtonSecondary />
 		</nav>
