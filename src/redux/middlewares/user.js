@@ -15,7 +15,6 @@ export const fetchUser = (query) => {
 				return response.json();
 			})
 			.then((user) => {
-    console.log(user)
 				if (query.token) {
 					user.token = query.token;
 				}
