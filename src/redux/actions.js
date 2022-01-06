@@ -23,7 +23,6 @@ export const fetchUserSuccess = (user) => {
 	return {
 		type: USER_SUCCESS,
 		user: user.body,
-		userLoading: false,
 		token: user.token,
 	};
 };
@@ -31,7 +30,6 @@ export const fetchUserSuccess = (user) => {
 export const fetchUserError = (userError) => ({
 	type: USER_ERROR,
 	userError,
-	userLoading: false,
 	token: false,
 });
 
@@ -47,7 +45,6 @@ export const userEditSuccess = (user) => {
 	return {
 		type: USER_EDIT_SUCCESS,
 		user: user.body,
-		userLoading: false,
 	};
 };
 
@@ -55,6 +52,5 @@ export const userEditError = (userError) => {
 	return {
 		type: USER_EDIT_ERROR,
 		userError,
-		userLoading: false,
 	};
 };
