@@ -2,20 +2,41 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import Router from "./router";
 import Footer from "./components/Footer/Footer.jsx";
 import React from "react";
+import { connect } from "react-redux";
+import { fetchUser } from "./redux/middlewares/user";
+import { useEffect } from "react";
 
-import { Provider } from "react-redux";
-import { store } from "../src/redux/store";
+function App({ token, fetchUser }) {
+	useEffect(() => {
+		if (localStorage.getItem("token")) {
+			const query = {
+				method: "POST",
+				endPoint: "profile",
+				token: localStorage.getItem("token"),
+			};
+			fetchUser(query);
+		}
+	}, [token, fetchUser]);
 
-function App() {
 	return (
-		<Provider store={store}>
 			<div className="App">
 				<Navbar />
 				<Router />
 				<Footer />
 			</div>
-		</Provider>
 	);
 }
 
-export default App;
+const mapStateToProps = ({ token }) => {
+	return {
+		token,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchUser: (...args) => dispatch(fetchUser(...args)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
