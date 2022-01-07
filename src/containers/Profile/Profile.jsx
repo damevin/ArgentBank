@@ -62,11 +62,15 @@ const Profile = ({ token, user, setUserData, fetchUser }) => {
 						</button>
 					</>
 				) : (
-					<form onSubmit={submitUserEditForm}>
-						<input placeholder={user.firstName} ref={inputEditFirstName}></input>
-						<input placeholder={user.lastName} ref={inputEditLastName}></input>
-						<button type="submit">Save</button>
-						<button onClick={() => toggleEditMode()}>Cancel</button>
+					<form onSubmit={submitUserEditForm} className="form">
+						<input className="form__input" placeholder={user.firstName} ref={inputEditFirstName}></input>
+						<input className="form__input" placeholder={user.lastName} ref={inputEditLastName}></input>
+						<button type="submit" className="btn__save">
+							Save
+						</button>
+						<button className="btn__cancel" onClick={() => toggleEditMode()}>
+							Cancel
+						</button>
 					</form>
 				)}
 			</header>
