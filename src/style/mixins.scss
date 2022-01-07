@@ -1,6 +1,12 @@
 @mixin button($type) {
 	border: none;
-	cursor: pointer;
+	opacity: 1;
+	transition: all 0.3s ease 0s;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.75;
+	}
+
 	@if $type == primary {
 		background-color: #00bc77;
 		border-color: #00bc77;
@@ -24,6 +30,7 @@
 		padding: 8px;
 		width: 100%;
 	}
+
 	@if $type == secondary {
 		align-items: center;
 		background: transparent;
@@ -36,5 +43,32 @@
 		&:hover {
 			text-decoration: underline;
 		}
+	}
+
+	@if $type == edit {
+		background-color: #00bc77;
+		border-color: #00bc77;
+		color: white;
+		font-size: 11px;
+		font-weight: bold;
+		margin-top: 20px;
+		padding: 10px;
+		width: auto;
+	}
+
+	@if $type == cancel {
+		background: white;
+		border: 1px solid #00bc77;
+		color: #00bc77;
+		font-size: 11px;
+		padding: 8px;
+	}
+
+	@if $type == save {
+		background: #00bc77;
+		color: white;
+		font-size: 11px;
+		padding: 8px;
+		font-weight: bold;
 	}
 }
