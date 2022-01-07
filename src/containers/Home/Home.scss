@@ -1,8 +1,17 @@
+@import "src/style/variables.scss";
+
 .home {
 	&__section {
 		display: grid;
 		gap: 20px;
 		margin-bottom: 20px;
 		padding: 10px;
+	}
+}
+
+@media screen and (min-width: $mediumdevices) {
+	.home__section {
+		margin: 25px;
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
