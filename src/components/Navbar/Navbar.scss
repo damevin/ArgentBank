@@ -1,10 +1,40 @@
+@import "src/style/mixins.scss";
+@import "src/style/variables.scss";
+
 .navbar {
+	align-items: center;
 	background: white;
 	display: flex;
 	justify-content: space-between;
 	padding-right: 10px;
 	&__logo {
-		height: 100%;
-		width: 180px;
+		height: auto;
+		width: 130px;
+	}
+	&__aside {
+		display: flex;
+	}
+}
+
+.btn {
+	@include button(secondary);
+	margin-left: 10px;
+	font-size: 13px;
+	&__icon {
+		height: 17px;
+		padding-right: 2px;
+	}
+}
+
+@media screen and (min-width: $mediumdevices) {
+	.navbar {
+		&__logo {
+			width: 180px;
+		}
+	}
+
+	.btn {
+		font-size: 1rem;
+		margin-left: 20px;
 	}
 }
