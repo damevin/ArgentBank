@@ -36,25 +36,14 @@ const Login = ({ token, fetchToken, error, userError, remember }) => {
 				<label className="formLogin__label" htmlFor="email">
 					E-mail
 				</label>
-				<input
-					className="formLogin__input"
-					id="email"
-					value="tony@stark.com"
-					ref={inputEmail}
-					type="text"
-				/>
+				<input className="formLogin__input" id="email" ref={inputEmail} type="text" />
 			</div>
 			<div className="formLogin__wrapper">
 				<label className="formLogin__label" htmlFor="password">
 					Password
 				</label>
-				<input
-					className="formLogin__input"
-					id="password"
-					value="password123"
-					ref={inputPassword}
-					type="password"
-				/>
+				<input className="formLogin__input" id="password" ref={inputPassword} type="password" />
+				{error && <span className="error-txt">Incorrect username or password</span>}
 			</div>
 			<div className="formLogin__wrapper--secondary">
 				<input className="formLogin__input--secondary" id="save" type="checkbox" ref={inputRemember} />

@@ -20,3 +20,9 @@
 		@include button(primary);
 	}
 }
+
+.error-txt {
+	color: crimson;
+	font-size: 14px;
+	padding: 5px 0px;
+}
