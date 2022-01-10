@@ -1,5 +1,4 @@
 import React from "react";
-import Banner from "./img.jpeg";
 import "./Header.scss";
 
 export default function Header() {
