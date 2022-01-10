@@ -1,7 +1,7 @@
-import React from "react";
-import { ReactComponent as UserIcon } from "../../components/Buttons/icons/user.svg";
-import FormLogin from "../../components/Forms/FormLogin/FormLogin";
 import "./Login.scss";
+import { ReactComponent as UserIcon } from "../../assets/icons/user.svg";
+import FormLogin from "../../components/FormLogin/FormLogin";
+import React from "react";
 
 export default function Login() {
 	return (
